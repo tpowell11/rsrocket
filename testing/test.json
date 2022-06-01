@@ -1,0 +1,31 @@
+{
+  "components": [
+    {
+      "name": "comp1",
+      "typ": 0,
+      "props": {
+        "length": 242.5,
+        "diameter": 5.63,
+        "mass": 3.14,
+        "position": 12.3
+      }
+    },
+    {
+      "name": "comp2",
+      "typ": 1,
+      "props": {
+        "mass": 2.56,
+        "diameter": 44.5,
+        "position": 3.4565,
+        "length": 4.565
+      }
+    }
+  ],
+  "precompute": {
+    "length": 247.065,
+    "com": 5.7,
+    "mass": 5.7,
+    "dia": 44.5
+  },
+  "prop_hash": "ff675e43cf636b23d6d82747495ca3438dec3221"
+}
