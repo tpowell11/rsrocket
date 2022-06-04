@@ -40,6 +40,11 @@ impl Rocket {
             prop_hash : String::new(),
         }
     }
+    pub fn from_file (spath : String) -> Self {
+        let contents = std::fs::read_to_string(spath)
+        .expect("Check inputted path, it is incorrect or unavailible");
+        return serde_json::from_str(&contents.to_string()).unwrap();
+    }
     fn hash (&mut self) {
         self.precompute_mprops();
         let mut data : f64 =  0.0;
@@ -135,7 +140,6 @@ impl Rocket {
         println!("prophash:{}",self.prop_hash)
     }
 }
-
 fn main() {
     println!("testing");
     let mut R = Rocket::new();
@@ -165,4 +169,8 @@ fn main() {
     R.add_component(comp2);
     R.display(4);
     R.write_out(String::from("./testing/test.json"));
+    println!("wrote to file");
+    let mut R2 = Rocket::from_file(String::from("./testing/test.json"));
+    R2.display(4);
+    R2.write_out(String::from("./testing/test2.json"));
 }
