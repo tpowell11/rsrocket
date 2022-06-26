@@ -5,27 +5,27 @@
       "typ": 0,
       "props": {
         "diameter": 5.63,
-        "length": 242.5,
         "mass": 3.14,
-        "position": 12.3
+        "position": 12.3,
+        "length": 242.5
       }
     },
     {
       "name": "comp2",
       "typ": 1,
       "props": {
-        "position": 3.4565,
-        "length": 4.565,
         "diameter": 44.5,
-        "mass": 2.56
+        "length": 4.565,
+        "mass": 2.56,
+        "position": 3.4565
       }
     }
   ],
   "precompute": {
-    "length": 247.065,
     "mass": 5.7,
+    "dia": 44.5,
     "com": 5.7,
-    "dia": 44.5
+    "length": 247.065
   },
-  "prop_hash": "ff675e43cf636b23d6d82747495ca3438dec3221"
+  "prop_hash": "3f1bd8814136f9b76db170b9ede1bbe8c73585f7"
 }

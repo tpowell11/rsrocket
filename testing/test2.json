@@ -23,9 +23,9 @@
   ],
   "precompute": {
     "mass": 5.7,
-    "com": 5.7,
+    "length": 247.065,
     "dia": 44.5,
-    "length": 247.065
+    "com": 5.7
   },
   "prop_hash": "ff675e43cf636b23d6d82747495ca3438dec3221"
 }
