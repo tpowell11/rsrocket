@@ -23,6 +23,7 @@ mod ModelRocket{
     use std::io::prelude::*; //file ops
     use std::fs::File; //files
     use std::path::Path; //filepaths
+    use std::process::exit;
     //use strum::IntoEnumIterator;
     use strum_macros::EnumIter;
     #[repr(u8)] //use u8's explicitly
@@ -187,23 +188,28 @@ mod ModelRocket{
 
 mod cli;
 fn main() {
+    let ARGS = std::env::args(); //get command line args
+
     use crate::ModelRocket as MR;
+    use crate::cli::Cli;
     let mut r = MR::Rocket::new();
-    ctrlc::set_handler(move || {println!("received Ctrl+C!");}).expect("Error setting Ctrl-C handler");
+    let mut c = Cli::default();
+    ctrlc::set_handler(move || {cli::ctlc_handler();std::process::exit(0)}).expect("Error setting Ctrl-C handler");
+    let test :f64  = c.promptf64("test");
+    println!("{}",test);
 
-
-    println!("RSRocket CLI | version {} \n Input \"H\" for help.",0);
-    if let "h" | "H" = &cli::read() as & str {
-        cli::dumpfile("./help/help.txt");
-    }
-    println!("Create new file or load?\n [N] [L]");
-    if let "n" | "N" = &cli::read() as &str {
-        r = MR::Rocket::new();
-    } else if let "l" | "L" = &cli::read() as &str {
-        println!("Enter file path: \n");
-        r = MR::Rocket::from_file(cli::read());
-    }
-    cli::get_component_type();
+    // println!("RSRocket CLI | version {} \n Input \"H\" for help.",0);
+    // if let "h" | "H" = &cli::read() as & str {
+    //     cli::dumpfile("./help/help.txt");
+    // }
+    // println!("Create new file or load?\n [N] [L]");
+    // if let "n" | "N" = &cli::read() as &str {
+    //     r = MR::Rocket::new();
+    // } else if let "l" | "L" = &cli::read() as &str {
+    //     println!("Enter file path: \n");
+    //     r = MR::Rocket::from_file(cli::read());
+    // }
+    // cli::get_component_type();
     //application loop
     // loop{
     //     println!("Actions availible\n [A]dd component [R]emove component [D]isplay");
