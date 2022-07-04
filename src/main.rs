@@ -5,14 +5,7 @@ use ctrlc;
 
 /// This module contains all things having to do with the actual simulation,
 /// including the algorihims and their corresponding data transfer layers.
-mod Sim{
-    use serde::{Serialize,Deserialize};
-    use std::collections::HashMap;
-    #[derive(Serialize, Deserialize)]
-    struct SimResult {
-        result : HashMap <String, f64>,
-    }
-}
+
 
 mod ModelRocket{
     use serde::{Serialize,Deserialize};
@@ -189,7 +182,10 @@ mod ModelRocket{
 mod cli;
 fn main() {
     let ARGS = std::env::args(); //get command line args
-
+    use std::any::type_name;//debug
+    fn type_of<T>(_: T) -> &'static str {
+        type_name::<T>()
+    }
     use crate::ModelRocket as MR;
     use crate::cli::Cli;
     let mut r = MR::Rocket::new();
@@ -197,6 +193,7 @@ fn main() {
     ctrlc::set_handler(move || {cli::ctlc_handler();std::process::exit(0)}).expect("Error setting Ctrl-C handler");
     let test :f64  = c.promptf64("test");
     println!("{}",test);
+    println!("{}",type_of(test))
 
     // println!("RSRocket CLI | version {} \n Input \"H\" for help.",0);
     // if let "h" | "H" = &cli::read() as & str {

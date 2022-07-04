@@ -34,20 +34,13 @@ impl Cli {
         self.Input.clear();
         self.Output.clear();
     }
-    pub fn promptf64(self, p: &str) -> f64 {
+    pub fn promptf64(& mut self, p: &str) -> f64 {
         println!("{}",p);
-        let mut inp = String::new();
-        //let mut out: f64;
-        let mut out : f64 = 0.0; 
-        std::io::stdin()
-                .read_line(&mut inp)
-                .expect("Read Failiure, exiting");
-        out = match inp.parse::<f64>() {
-            Ok(_) => out, 
-            _ => 0.0, //* this should probaly use a Result<> idk
-        };
+        self.read();
+        // trim the \n parse to f64
+        let out : f64 = self.Input.trim_end_matches(char::is_whitespace).parse().unwrap();
         return out;
-        }
+    }
 }
 
 pub fn build_component(componentType : MR::ComponentTypeId) {
@@ -74,7 +67,7 @@ fn promptf64(p: &str) -> f64 {
             .expect("Read Failiure, exiting");
     println!("in:{}",inp);
     out = match inp.trim_end().parse::<f64>() {
-        Ok(_) => out = 2, 
+        Ok(_) => out, 
         _ => 0.0, //* this should probaly use a Result<> idk
     };
     return out;
